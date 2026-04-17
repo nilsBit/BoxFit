@@ -1,24 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-
-const Colors = {
-  surfaceContainerHigh: '#2a2a2a',
-  surfaceContainerLow: '#1c1b1b',
-  primaryContainer: '#ff535b',
-  primary: '#ffb3b1',
-  tertiaryContainer: '#2fa096',
-  onSurface: '#e5e2e1',
-  onSurfaceVariant: '#e4bebc',
-  outlineVariant: '#5b403f',
-};
-
-interface ProgressionLevel {
-  weekRange: [number, number];
-  label: string;
-  description: string;
-  changes: string[];
-  tips: string[];
-}
+import { Colors } from '../constants/theme';
+import { ProgressionLevel } from '../types';
 
 interface Props {
   level: ProgressionLevel;

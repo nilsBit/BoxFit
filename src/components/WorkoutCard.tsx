@@ -2,28 +2,8 @@ import React from 'react';
 import { View, Text, Pressable, StyleSheet } from 'react-native';
 import * as Haptics from 'expo-haptics';
 import { useRouter } from 'expo-router';
-
-const Colors = {
-  surfaceContainerLow: '#1c1b1b',
-  surfaceContainerHighest: '#353534',
-  onSurface: '#e5e2e1',
-  onSurfaceVariant: '#e4bebc',
-};
-
-interface DayWorkout {
-  day: number;
-  title: string;
-  subtitle: string;
-  color: string;
-  circuit: {
-    exercises: { exerciseId: string; name: string }[];
-    rounds: number;
-    workSeconds: number;
-    restSeconds: number;
-  };
-  finisher: { rounds: number; durationMinutes: number; restSeconds: number; label: string };
-  closing: { name: string; sets: number; reps?: number; durationSeconds?: number };
-}
+import { Colors } from '../constants/theme';
+import { DayWorkout } from '../types';
 
 interface Props {
   workout: DayWorkout;

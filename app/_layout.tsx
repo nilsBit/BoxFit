@@ -16,6 +16,7 @@ import {
   Inter_700Bold,
 } from '@expo-google-fonts/inter';
 import * as SplashScreen from 'expo-splash-screen';
+import { Colors } from '../src/constants/theme';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -38,7 +39,7 @@ export default function RootLayout() {
   }, [fontsLoaded]);
 
   if (!fontsLoaded) {
-    return <View style={{ flex: 1, backgroundColor: '#131313' }} />;
+    return <View style={{ flex: 1, backgroundColor: Colors.background }} />;
   }
 
   return (
@@ -47,7 +48,7 @@ export default function RootLayout() {
       <Stack
         screenOptions={{
           headerShown: false,
-          contentStyle: { backgroundColor: '#131313' },
+          contentStyle: { backgroundColor: Colors.background },
           animation: 'slide_from_bottom',
         }}
       >

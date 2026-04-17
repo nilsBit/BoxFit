@@ -16,22 +16,9 @@ import { WARMUP_EXERCISES } from '../src/constants/workouts';
 import { getExerciseById } from '../src/constants/exercises';
 import { getCombosForRound, BoxingCombo } from '../src/constants/combos';
 import { WorkoutPhase } from '../src/types';
+import { Colors } from '../src/constants/theme';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
-
-const C = {
-  background: '#131313',
-  surfaceContainerLow: '#1c1b1b',
-  surfaceContainerHigh: '#2a2a2a',
-  surfaceContainerHighest: '#353534',
-  primary: '#ffb3b1',
-  primaryContainer: '#ff535b',
-  onSurface: '#e5e2e1',
-  onSurfaceVariant: '#e4bebc',
-  tertiary: '#6fd8cc',
-  tertiaryContainer: '#2fa096',
-  outlineVariant: '#5b403f',
-};
 
 export default function WorkoutScreen() {
   const { day } = useLocalSearchParams<{ day: string }>();
@@ -519,36 +506,36 @@ export default function WorkoutScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: C.background },
+  container: { flex: 1, backgroundColor: Colors.background },
   main: { flex: 1, paddingHorizontal: 20, paddingTop: 8, gap: 12 },
 
   // Header
   header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   quitBtn: {
     width: 36, height: 36, borderRadius: 18,
-    backgroundColor: C.surfaceContainerHigh,
+    backgroundColor: Colors.surfaceContainerHigh,
     alignItems: 'center', justifyContent: 'center',
   },
-  quitIcon: { color: C.onSurfaceVariant, fontSize: 16 },
+  quitIcon: { color: Colors.onSurfaceVariant, fontSize: 16 },
   headerDay: {
     fontFamily: 'SpaceGrotesk-Bold', fontSize: 12, letterSpacing: 1,
-    color: C.tertiary, textTransform: 'uppercase', flex: 1, textAlign: 'center',
+    color: Colors.tertiary, textTransform: 'uppercase', flex: 1, textAlign: 'center',
   },
   roundBadge: {
-    backgroundColor: C.surfaceContainerHigh,
+    backgroundColor: Colors.surfaceContainerHigh,
     paddingHorizontal: 12, paddingVertical: 6, borderRadius: 999,
   },
-  roundText: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 11, color: C.onSurface, letterSpacing: 1 },
+  roundText: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 11, color: Colors.onSurface, letterSpacing: 1 },
 
   // Exercise Header
   exerciseHeader: { alignItems: 'center', gap: 4 },
   exerciseIcon: { fontSize: 48 },
   exerciseName: {
-    fontFamily: 'SpaceGrotesk-Bold', fontSize: 26, color: C.onSurface,
+    fontFamily: 'SpaceGrotesk-Bold', fontSize: 26, color: Colors.onSurface,
     letterSpacing: -1, textAlign: 'center', lineHeight: 32,
   },
   exerciseSubtitle: {
-    fontFamily: 'Inter-Medium', fontSize: 13, color: C.onSurfaceVariant,
+    fontFamily: 'Inter-Medium', fontSize: 13, color: Colors.onSurfaceVariant,
     letterSpacing: 1,
   },
 
@@ -558,75 +545,75 @@ const styles = StyleSheet.create({
   // Tip card
   tipCard: {
     flexDirection: 'row', alignItems: 'center', gap: 10,
-    backgroundColor: C.surfaceContainerLow, borderRadius: 12, padding: 14,
-    borderLeftWidth: 3, borderLeftColor: C.tertiary,
+    backgroundColor: Colors.surfaceContainerLow, borderRadius: 12, padding: 14,
+    borderLeftWidth: 3, borderLeftColor: Colors.tertiary,
   },
   tipIcon: { fontSize: 18 },
-  tipText: { fontFamily: 'Inter', fontSize: 13, color: C.onSurfaceVariant, flex: 1, lineHeight: 19 },
+  tipText: { fontFamily: 'Inter', fontSize: 13, color: Colors.onSurfaceVariant, flex: 1, lineHeight: 19 },
 
   // Rest card
   restCard: {
     flexDirection: 'row', alignItems: 'center', gap: 10,
-    backgroundColor: C.tertiaryContainer + '30', borderRadius: 12, padding: 14,
+    backgroundColor: Colors.tertiaryContainer + '30', borderRadius: 12, padding: 14,
   },
   restIcon: { fontSize: 24 },
-  restText: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 16, color: C.tertiary },
+  restText: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 16, color: Colors.tertiary },
 
   // Combo card
   comboCard: {
-    backgroundColor: C.primaryContainer + '15',
+    backgroundColor: Colors.primaryContainer + '15',
     borderRadius: 16, padding: 16, gap: 6,
-    borderLeftWidth: 3, borderLeftColor: C.primaryContainer,
+    borderLeftWidth: 3, borderLeftColor: Colors.primaryContainer,
   },
   comboHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
-  comboLabel: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 10, letterSpacing: 2, color: C.primaryContainer },
-  comboLevel: { fontFamily: 'Inter-Medium', fontSize: 10, color: C.onSurfaceVariant },
-  comboName: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 16, color: C.onSurface },
-  comboSequence: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 28, color: C.primary, letterSpacing: 2, marginVertical: 4 },
-  comboTip: { fontFamily: 'Inter', fontSize: 12, color: C.onSurfaceVariant, lineHeight: 18 },
+  comboLabel: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 10, letterSpacing: 2, color: Colors.primaryContainer },
+  comboLevel: { fontFamily: 'Inter-Medium', fontSize: 10, color: Colors.onSurfaceVariant },
+  comboName: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 16, color: Colors.onSurface },
+  comboSequence: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 28, color: Colors.primary, letterSpacing: 2, marginVertical: 4 },
+  comboTip: { fontFamily: 'Inter', fontSize: 12, color: Colors.onSurfaceVariant, lineHeight: 18 },
 
   // Next preview
   nextPreview: {
     flexDirection: 'row', alignItems: 'center', gap: 12,
-    backgroundColor: C.surfaceContainerHighest + '50', borderRadius: 12, padding: 14,
-    borderWidth: 1, borderColor: C.outlineVariant + '15',
+    backgroundColor: Colors.surfaceContainerHighest + '50', borderRadius: 12, padding: 14,
+    borderWidth: 1, borderColor: Colors.outlineVariant + '15',
   },
-  nextLabel: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 9, letterSpacing: 2, color: C.onSurfaceVariant },
-  nextName: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 14, color: C.onSurface, flex: 1 },
+  nextLabel: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 9, letterSpacing: 2, color: Colors.onSurfaceVariant },
+  nextName: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 14, color: Colors.onSurface, flex: 1 },
 
   // Controls
   controls: { flexDirection: 'row', gap: 12, paddingBottom: 16 },
   controlBtnMain: {
     flex: 1, height: 60, borderRadius: 30,
-    backgroundColor: C.primaryContainer,
+    backgroundColor: Colors.primaryContainer,
     flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8,
-    shadowColor: C.primaryContainer, shadowOpacity: 0.5, shadowRadius: 20,
+    shadowColor: Colors.primaryContainer, shadowOpacity: 0.5, shadowRadius: 20,
     shadowOffset: { width: 0, height: 10 },
   },
   controlMainIcon: { fontSize: 22, color: '#fff' },
   controlMainText: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 16, color: '#fff', letterSpacing: -0.5 },
   skipBtn: {
     height: 60, paddingHorizontal: 24, borderRadius: 30,
-    backgroundColor: C.surfaceContainerHigh,
+    backgroundColor: Colors.surfaceContainerHigh,
     alignItems: 'center', justifyContent: 'center',
   },
-  skipText: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 14, color: C.onSurface, letterSpacing: 1 },
+  skipText: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 14, color: Colors.onSurface, letterSpacing: 1 },
 
   // Done screen
   doneScreen: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 16, paddingHorizontal: 24 },
   doneTitle: {
-    fontFamily: 'SpaceGrotesk-Bold', fontSize: 36, color: C.onSurface,
+    fontFamily: 'SpaceGrotesk-Bold', fontSize: 36, color: Colors.onSurface,
     letterSpacing: -1, textAlign: 'center', lineHeight: 42,
   },
-  doneSubtitle: { fontFamily: 'Inter-Medium', fontSize: 16, color: C.onSurfaceVariant, textAlign: 'center' },
+  doneSubtitle: { fontFamily: 'Inter-Medium', fontSize: 16, color: Colors.onSurfaceVariant, textAlign: 'center' },
   doneSummary: { flexDirection: 'row', gap: 24, marginTop: 8 },
   doneStat: { alignItems: 'center', gap: 4 },
-  doneStatValue: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 28, color: C.primaryContainer },
-  doneStatLabel: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 9, letterSpacing: 2, color: C.onSurfaceVariant },
+  doneStatValue: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 28, color: Colors.primaryContainer },
+  doneStatLabel: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 9, letterSpacing: 2, color: Colors.onSurfaceVariant },
   doneButton: {
-    backgroundColor: C.primaryContainer, paddingHorizontal: 40, paddingVertical: 18,
+    backgroundColor: Colors.primaryContainer, paddingHorizontal: 40, paddingVertical: 18,
     borderRadius: 999, marginTop: 24,
-    shadowColor: C.primaryContainer, shadowOpacity: 0.4, shadowRadius: 20,
+    shadowColor: Colors.primaryContainer, shadowOpacity: 0.4, shadowRadius: 20,
     shadowOffset: { width: 0, height: 10 },
   },
   doneButtonText: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 16, color: '#fff', letterSpacing: 1 },
@@ -636,20 +623,20 @@ const styles = StyleSheet.create({
     flex: 1, paddingHorizontal: 24, paddingTop: 16,
     gap: 16, alignItems: 'center', justifyContent: 'center',
   },
-  closingLabel: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 12, letterSpacing: 3, color: C.tertiary },
-  closingTitle: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 32, color: C.onSurface, textAlign: 'center' },
+  closingLabel: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 12, letterSpacing: 3, color: Colors.tertiary },
+  closingTitle: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 32, color: Colors.onSurface, textAlign: 'center' },
   closingInfoCard: {
-    backgroundColor: C.surfaceContainerLow, borderRadius: 16, padding: 20,
+    backgroundColor: Colors.surfaceContainerLow, borderRadius: 16, padding: 20,
     gap: 8, width: '100%', alignItems: 'center',
   },
-  closingInfoText: { fontFamily: 'Inter-SemiBold', fontSize: 18, color: C.onSurface, textAlign: 'center' },
-  closingTip: { fontFamily: 'Inter', fontSize: 13, color: C.tertiary, textAlign: 'center' },
+  closingInfoText: { fontFamily: 'Inter-SemiBold', fontSize: 18, color: Colors.onSurface, textAlign: 'center' },
+  closingTip: { fontFamily: 'Inter', fontSize: 13, color: Colors.tertiary, textAlign: 'center' },
   closingHint: {
-    fontFamily: 'Inter', fontSize: 14, color: C.onSurfaceVariant,
+    fontFamily: 'Inter', fontSize: 14, color: Colors.onSurfaceVariant,
     textAlign: 'center', lineHeight: 22,
   },
   closingButton: {
-    backgroundColor: C.tertiaryContainer, paddingHorizontal: 40, paddingVertical: 18,
+    backgroundColor: Colors.tertiaryContainer, paddingHorizontal: 40, paddingVertical: 18,
     borderRadius: 999, marginTop: 8,
   },
   closingButtonText: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 16, color: '#fff', letterSpacing: 1 },

@@ -1,5 +1,6 @@
 import { Tabs } from 'expo-router';
 import { View, Text, StyleSheet } from 'react-native';
+import { Colors } from '../../src/constants/theme';
 
 function TabIcon({ name, focused }: { name: string; focused: boolean }) {
   const icons: Record<string, string> = {
@@ -81,14 +82,14 @@ const styles = StyleSheet.create({
     elevation: 0,
   },
   activeTab: {
-    backgroundColor: '#ff535b',
+    backgroundColor: Colors.primaryContainer,
     width: 56,
     height: 56,
     borderRadius: 28,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 8,
-    shadowColor: '#ff535b',
+    shadowColor: Colors.primaryContainer,
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.4,
     shadowRadius: 20,
@@ -110,7 +111,7 @@ const styles = StyleSheet.create({
     fontFamily: 'SpaceGrotesk-Bold',
     fontSize: 8,
     letterSpacing: 1,
-    color: '#e5e2e199',
+    color: Colors.onSurface + '99',
     textAlign: 'center',
   },
 });

@@ -4,17 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { ExerciseCard } from '../../src/components/ExerciseCard';
 import { EXERCISES } from '../../src/constants/exercises';
 import { ALL_COMBOS, BoxingCombo } from '../../src/constants/combos';
-
-const C = {
-  background: '#131313',
-  surfaceContainerLowest: '#0e0e0e',
-  surfaceContainerLow: '#1c1b1b',
-  surfaceContainerHigh: '#2a2a2a',
-  primary: '#ffb3b1',
-  onPrimary: '#680011',
-  onSurface: '#e5e2e1',
-  onSurfaceVariant: '#e4bebc',
-};
+import { Colors } from '../../src/constants/theme';
 
 const FILTERS = ['ALLE', 'KOMBOS', 'BEINE', 'OBERKÖRPER', 'CORE', 'BOXEN', 'KARDIO', 'DEHNUNG'];
 
@@ -147,7 +137,7 @@ export default function UebungenScreen() {
           <TextInput
             style={styles.searchInput}
             placeholder="Übung suchen..."
-            placeholderTextColor={C.onSurfaceVariant + '80'}
+            placeholderTextColor={Colors.onSurfaceVariant + '80'}
             value={search}
             onChangeText={setSearch}
           />
@@ -241,12 +231,12 @@ export default function UebungenScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: C.background },
+  container: { flex: 1, backgroundColor: Colors.background },
   content: { paddingHorizontal: 20 },
   title: {
     fontFamily: 'SpaceGrotesk-Bold',
     fontSize: 40,
-    color: C.onSurface,
+    color: Colors.onSurface,
     letterSpacing: -2,
     marginTop: 8,
     marginBottom: 20,
@@ -254,7 +244,7 @@ const styles = StyleSheet.create({
   searchWrap: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: C.surfaceContainerLowest,
+    backgroundColor: Colors.surfaceContainerLowest,
     borderRadius: 999,
     paddingHorizontal: 16,
     marginBottom: 16,
@@ -264,24 +254,24 @@ const styles = StyleSheet.create({
     flex: 1,
     fontFamily: 'Inter',
     fontSize: 16,
-    color: C.onSurface,
+    color: Colors.onSurface,
     paddingVertical: 14,
   },
   filters: { gap: 8, paddingBottom: 8, marginBottom: 16 },
   chip: {
     paddingHorizontal: 16,
     paddingVertical: 8,
-    backgroundColor: C.surfaceContainerHigh,
+    backgroundColor: Colors.surfaceContainerHigh,
     borderRadius: 999,
   },
-  chipActive: { backgroundColor: C.primary },
+  chipActive: { backgroundColor: Colors.primary },
   chipText: {
     fontFamily: 'SpaceGrotesk-Bold',
     fontSize: 11,
     letterSpacing: 2,
-    color: C.onSurfaceVariant,
+    color: Colors.onSurfaceVariant,
   },
-  chipTextActive: { color: C.onPrimary },
+  chipTextActive: { color: Colors.onPrimary },
   list: { gap: 16 },
   sectionWrap: { gap: 8 },
   sectionHeader: {
@@ -290,7 +280,7 @@ const styles = StyleSheet.create({
     gap: 8,
     paddingVertical: 4,
     borderBottomWidth: 1,
-    borderBottomColor: '#353534',
+    borderBottomColor: Colors.surfaceContainerHighest,
     marginBottom: 2,
   },
   sectionIcon: { fontSize: 18 },
@@ -298,14 +288,14 @@ const styles = StyleSheet.create({
     fontFamily: 'SpaceGrotesk-Bold',
     fontSize: 12,
     letterSpacing: 2,
-    color: '#ffb3b1',
+    color: Colors.primary,
     flex: 1,
   },
   sectionCount: {
     fontFamily: 'SpaceGrotesk-Bold',
     fontSize: 11,
-    color: '#e4bebc',
-    backgroundColor: '#2a2a2a',
+    color: Colors.onSurfaceVariant,
+    backgroundColor: Colors.surfaceContainerHigh,
     paddingHorizontal: 8,
     paddingVertical: 2,
     borderRadius: 999,
@@ -314,13 +304,13 @@ const styles = StyleSheet.create({
   empty: {
     fontFamily: 'Inter',
     fontSize: 14,
-    color: C.onSurfaceVariant,
+    color: Colors.onSurfaceVariant,
     textAlign: 'center',
     marginTop: 40,
   },
   // Combo styles
   comboLegend: {
-    backgroundColor: C.surfaceContainerHigh,
+    backgroundColor: Colors.surfaceContainerHigh,
     borderRadius: 12,
     padding: 14,
     gap: 3,
@@ -330,16 +320,16 @@ const styles = StyleSheet.create({
     fontFamily: 'SpaceGrotesk-Bold',
     fontSize: 10,
     letterSpacing: 2,
-    color: C.primary,
+    color: Colors.primary,
     marginBottom: 6,
   },
   legendItem: {
     fontFamily: 'Inter-Medium',
     fontSize: 12,
-    color: C.onSurfaceVariant,
+    color: Colors.onSurfaceVariant,
   },
   comboCard: {
-    backgroundColor: C.surfaceContainerLow,
+    backgroundColor: Colors.surfaceContainerLow,
     borderRadius: 16,
     padding: 16,
     gap: 4,
@@ -352,7 +342,7 @@ const styles = StyleSheet.create({
   comboName: {
     fontFamily: 'SpaceGrotesk-Bold',
     fontSize: 16,
-    color: C.onSurface,
+    color: Colors.onSurface,
     flex: 1,
   },
   comboBadge: {
@@ -368,14 +358,14 @@ const styles = StyleSheet.create({
   comboSequence: {
     fontFamily: 'SpaceGrotesk-Bold',
     fontSize: 22,
-    color: C.primary,
+    color: Colors.primary,
     letterSpacing: 1,
     marginVertical: 4,
   },
   comboDesc: {
     fontFamily: 'Inter',
     fontSize: 13,
-    color: C.onSurfaceVariant,
+    color: Colors.onSurfaceVariant,
     lineHeight: 20,
     marginTop: 4,
   },
@@ -387,17 +377,17 @@ const styles = StyleSheet.create({
   comboFocusLabel: {
     fontFamily: 'Inter-SemiBold',
     fontSize: 12,
-    color: C.onSurfaceVariant,
+    color: Colors.onSurfaceVariant,
   },
   comboFocusValue: {
     fontFamily: 'Inter-SemiBold',
     fontSize: 12,
-    color: '#6fd8cc',
+    color: Colors.tertiary,
   },
   comboTip: {
     fontFamily: 'Inter',
     fontSize: 12,
-    color: '#6fd8cc',
+    color: Colors.tertiary,
     marginTop: 6,
     lineHeight: 18,
   },

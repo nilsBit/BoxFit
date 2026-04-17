@@ -6,19 +6,7 @@ import * as Haptics from 'expo-haptics';
 import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import { useStorage } from '../src/hooks/useStorage';
 import { getWeekNumber } from '../src/utils/dateUtils';
-
-const C = {
-  background: '#131313',
-  surfaceContainerLow: '#1c1b1b',
-  surfaceContainerHigh: '#2a2a2a',
-  surfaceContainerHighest: '#353534',
-  primary: '#ffb3b1',
-  primaryContainer: '#ff535b',
-  onSurface: '#e5e2e1',
-  onSurfaceVariant: '#e4bebc',
-  tertiary: '#6fd8cc',
-  error: '#ffb4ab',
-};
+import { Colors } from '../src/constants/theme';
 
 export default function SettingsScreen() {
   const router = useRouter();
@@ -173,8 +161,8 @@ export default function SettingsScreen() {
               <Switch
                 value={speechEnabled}
                 onValueChange={setSpeechEnabled}
-                trackColor={{ false: C.surfaceContainerHighest, true: C.primaryContainer }}
-                thumbColor={speechEnabled ? C.primary : C.onSurfaceVariant}
+                trackColor={{ false: Colors.surfaceContainerHighest, true: Colors.primaryContainer }}
+                thumbColor={speechEnabled ? Colors.primary : Colors.onSurfaceVariant}
               />
             </View>
           </View>
@@ -242,47 +230,47 @@ export default function SettingsScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: C.background },
+  container: { flex: 1, backgroundColor: Colors.background },
   header: {
     flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
     paddingHorizontal: 20, paddingVertical: 12,
   },
   backBtn: {
     width: 36, height: 36, borderRadius: 18,
-    backgroundColor: C.surfaceContainerHigh,
+    backgroundColor: Colors.surfaceContainerHigh,
     alignItems: 'center', justifyContent: 'center',
   },
-  backIcon: { color: C.onSurface, fontSize: 24, marginTop: -2 },
+  backIcon: { color: Colors.onSurface, fontSize: 24, marginTop: -2 },
   headerTitle: {
-    fontFamily: 'SpaceGrotesk-Bold', fontSize: 18, color: C.onSurface, letterSpacing: -0.5,
+    fontFamily: 'SpaceGrotesk-Bold', fontSize: 18, color: Colors.onSurface, letterSpacing: -0.5,
   },
   content: { paddingHorizontal: 20, gap: 24 },
   section: { gap: 8 },
   sectionTitle: {
     fontFamily: 'SpaceGrotesk-Bold', fontSize: 10, letterSpacing: 3,
-    color: C.onSurfaceVariant, marginLeft: 4,
+    color: Colors.onSurfaceVariant, marginLeft: 4,
   },
   card: {
-    backgroundColor: C.surfaceContainerLow, borderRadius: 16, overflow: 'hidden',
+    backgroundColor: Colors.surfaceContainerLow, borderRadius: 16, overflow: 'hidden',
   },
   row: {
     flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
     paddingHorizontal: 16, paddingVertical: 14, gap: 8,
   },
-  rowLabel: { fontFamily: 'Inter-Medium', fontSize: 15, color: C.onSurface },
-  rowValue: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 14, color: C.primary },
-  rowHint: { fontFamily: 'Inter', fontSize: 11, color: C.onSurfaceVariant, marginTop: 2 },
-  editIcon: { fontSize: 14, color: C.onSurfaceVariant, marginLeft: 4 },
-  divider: { height: 1, backgroundColor: C.surfaceContainerHighest, marginHorizontal: 16 },
+  rowLabel: { fontFamily: 'Inter-Medium', fontSize: 15, color: Colors.onSurface },
+  rowValue: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 14, color: Colors.primary },
+  rowHint: { fontFamily: 'Inter', fontSize: 11, color: Colors.onSurfaceVariant, marginTop: 2 },
+  editIcon: { fontSize: 14, color: Colors.onSurfaceVariant, marginLeft: 4 },
+  divider: { height: 1, backgroundColor: Colors.surfaceContainerHighest, marginHorizontal: 16 },
   // Date picker
   datePickerWrap: {
     paddingHorizontal: 16, paddingBottom: 14,
-    backgroundColor: C.surfaceContainerHigh, marginHorizontal: 8, borderRadius: 12,
+    backgroundColor: Colors.surfaceContainerHigh, marginHorizontal: 8, borderRadius: 12,
     marginBottom: 8,
   },
   closeDatePicker: {
     alignItems: 'center', paddingVertical: 10,
-    backgroundColor: C.primaryContainer, borderRadius: 10, marginTop: 8,
+    backgroundColor: Colors.primaryContainer, borderRadius: 10, marginTop: 8,
   },
   closeDatePickerText: { fontFamily: 'Inter-SemiBold', fontSize: 14, color: '#fff' },
   // Week picker
@@ -290,23 +278,23 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16, paddingBottom: 14, gap: 10,
   },
   weekPickerLabel: {
-    fontFamily: 'Inter-Medium', fontSize: 13, color: C.onSurfaceVariant, marginBottom: 4,
+    fontFamily: 'Inter-Medium', fontSize: 13, color: Colors.onSurfaceVariant, marginBottom: 4,
   },
   weekGrid: {
     flexDirection: 'row', flexWrap: 'wrap', gap: 8,
   },
   weekBtn: {
     width: 48, height: 48, borderRadius: 12,
-    backgroundColor: C.surfaceContainerHighest,
+    backgroundColor: Colors.surfaceContainerHighest,
     alignItems: 'center', justifyContent: 'center',
   },
   weekBtnActive: {
-    backgroundColor: C.primaryContainer,
-    shadowColor: C.primaryContainer, shadowOpacity: 0.4, shadowRadius: 10,
+    backgroundColor: Colors.primaryContainer,
+    shadowColor: Colors.primaryContainer, shadowOpacity: 0.4, shadowRadius: 10,
     shadowOffset: { width: 0, height: 0 },
   },
   weekBtnText: {
-    fontFamily: 'SpaceGrotesk-Bold', fontSize: 16, color: C.onSurfaceVariant,
+    fontFamily: 'SpaceGrotesk-Bold', fontSize: 16, color: Colors.onSurfaceVariant,
   },
   weekBtnTextActive: { color: '#fff' },
   // Equipment
@@ -315,15 +303,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16, paddingVertical: 14,
   },
   equipIcon: { fontSize: 20 },
-  equipText: { fontFamily: 'Inter-Medium', fontSize: 15, color: C.onSurface },
+  equipText: { fontFamily: 'Inter-Medium', fontSize: 15, color: Colors.onSurface },
   // Danger
   dangerBtn: {
-    backgroundColor: C.surfaceContainerLow, borderRadius: 16, padding: 16,
-    borderWidth: 1, borderColor: C.error + '30',
+    backgroundColor: Colors.surfaceContainerLow, borderRadius: 16, padding: 16,
+    borderWidth: 1, borderColor: Colors.error + '30',
   },
-  dangerBtnText: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 15, color: C.error },
-  dangerBtnHint: { fontFamily: 'Inter', fontSize: 12, color: C.onSurfaceVariant, marginTop: 4 },
+  dangerBtnText: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 15, color: Colors.error },
+  dangerBtnHint: { fontFamily: 'Inter', fontSize: 12, color: Colors.onSurfaceVariant, marginTop: 4 },
   // Credits
   credits: { alignItems: 'center', gap: 4, paddingTop: 8 },
-  creditsText: { fontFamily: 'Inter', fontSize: 12, color: C.onSurfaceVariant, opacity: 0.5 },
+  creditsText: { fontFamily: 'Inter', fontSize: 12, color: Colors.onSurfaceVariant, opacity: 0.5 },
 });

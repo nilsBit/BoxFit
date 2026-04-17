@@ -5,18 +5,8 @@ import { useStorage } from '../../src/hooks/useStorage';
 import { useWorkoutState } from '../../src/hooks/useWorkoutState';
 import { HeatmapCalendar } from '../../src/components/HeatmapCalendar';
 import { WeeklyBarChart } from '../../src/components/WeeklyBarChart';
-import { getHeatmapData, getWorkoutsPerWeek, calculateStreak } from '../../src/utils/dateUtils';
-
-const C = {
-  background: '#131313',
-  surfaceContainerLow: '#1c1b1b',
-  surfaceContainerHighest: '#353534',
-  primary: '#ffb3b1',
-  primaryContainer: '#ff535b',
-  onSurface: '#e5e2e1',
-  onSurfaceVariant: '#e4bebc',
-  tertiary: '#6fd8cc',
-};
+import { getHeatmapData, getWorkoutsPerWeek, calculateMaxStreak } from '../../src/utils/dateUtils';
+import { Colors } from '../../src/constants/theme';
 
 export default function FortschrittScreen() {
   const { state, isLoaded } = useStorage();
@@ -33,24 +23,7 @@ export default function FortschrittScreen() {
       ? weeklyData.reduce((sum, w) => sum + w.count, 0) / weeklyData.length
       : 0;
 
-  const maxStreak = (() => {
-    if (state.completedWorkouts.length === 0) return 0;
-    const dates = [...new Set(state.completedWorkouts.map((w) => w.date))].sort();
-    let max = 1;
-    let current = 1;
-    for (let i = 1; i < dates.length; i++) {
-      const prev = new Date(dates[i - 1] + 'T12:00:00');
-      const curr = new Date(dates[i] + 'T12:00:00');
-      const diff = (curr.getTime() - prev.getTime()) / (1000 * 60 * 60 * 24);
-      if (diff === 1) {
-        current++;
-        max = Math.max(max, current);
-      } else {
-        current = 1;
-      }
-    }
-    return max;
-  })();
+  const maxStreak = calculateMaxStreak(state.completedWorkouts);
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
@@ -95,29 +68,18 @@ export default function FortschrittScreen() {
         <WeeklyBarChart data={weeklyData} average={avgPerWeek} />
 
         {/* Goal Card */}
-        <View style={styles.goalCard}>
-          <Text style={styles.goalLabel}>NÄCHSTES ZIEL</Text>
-          <Text style={styles.goalTitle}>
-            {ws.totalWorkouts < 10
-              ? '10 WORKOUTS'
-              : ws.totalWorkouts < 30
-              ? '30 WORKOUTS'
-              : ws.totalWorkouts < 60
-              ? '60 WORKOUTS'
-              : '100 WORKOUTS'}
-          </Text>
-          <Text style={styles.goalText}>
-            Noch{' '}
-            {(ws.totalWorkouts < 10
-              ? 10
-              : ws.totalWorkouts < 30
-              ? 30
-              : ws.totalWorkouts < 60
-              ? 60
-              : 100) - ws.totalWorkouts}{' '}
-            Einheiten bis zum nächsten Badge.
-          </Text>
-        </View>
+        {(() => {
+          const nextGoal = ws.totalWorkouts < 10 ? 10 : ws.totalWorkouts < 30 ? 30 : ws.totalWorkouts < 60 ? 60 : 100;
+          return (
+            <View style={styles.goalCard}>
+              <Text style={styles.goalLabel}>NÄCHSTES ZIEL</Text>
+              <Text style={styles.goalTitle}>{nextGoal} WORKOUTS</Text>
+              <Text style={styles.goalText}>
+                Noch {nextGoal - ws.totalWorkouts} Einheiten bis zum nächsten Badge.
+              </Text>
+            </View>
+          );
+        })()}
 
         <View style={{ height: 100 }} />
       </ScrollView>
@@ -126,19 +88,19 @@ export default function FortschrittScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: C.background },
+  container: { flex: 1, backgroundColor: Colors.background },
   content: { paddingHorizontal: 20, gap: 20 },
   title: {
     fontFamily: 'SpaceGrotesk-Bold',
     fontSize: 32,
-    color: C.primary,
+    color: Colors.primary,
     letterSpacing: -1,
     marginTop: 8,
   },
   subtitle: {
     fontFamily: 'Inter-Medium',
     fontSize: 12,
-    color: C.onSurfaceVariant,
+    color: Colors.onSurfaceVariant,
     letterSpacing: 2,
     marginBottom: 4,
   },
@@ -147,7 +109,7 @@ const styles = StyleSheet.create({
   bentoCard: {
     flex: 1,
     minWidth: '45%',
-    backgroundColor: C.surfaceContainerLow,
+    backgroundColor: Colors.surfaceContainerLow,
     borderRadius: 16,
     padding: 18,
   },
@@ -155,28 +117,28 @@ const styles = StyleSheet.create({
     fontFamily: 'SpaceGrotesk-Bold',
     fontSize: 10,
     letterSpacing: 2,
-    color: C.onSurfaceVariant,
+    color: Colors.onSurfaceVariant,
     marginBottom: 12,
   },
   bentoRow: { flexDirection: 'row', alignItems: 'baseline', gap: 6 },
   bentoValueLarge: {
     fontFamily: 'SpaceGrotesk-Bold',
     fontSize: 44,
-    color: C.onSurface,
+    color: Colors.onSurface,
   },
   bentoValue: {
     fontFamily: 'SpaceGrotesk-Bold',
     fontSize: 32,
-    color: C.onSurface,
+    color: Colors.onSurface,
   },
   bentoUnit: {
     fontFamily: 'SpaceGrotesk-Bold',
     fontSize: 12,
-    color: C.onSurfaceVariant,
+    color: Colors.onSurfaceVariant,
     letterSpacing: -0.5,
   },
   goalCard: {
-    backgroundColor: C.surfaceContainerLow,
+    backgroundColor: Colors.surfaceContainerLow,
     borderRadius: 16,
     padding: 24,
   },
@@ -184,19 +146,19 @@ const styles = StyleSheet.create({
     fontFamily: 'SpaceGrotesk-Bold',
     fontSize: 11,
     letterSpacing: 3,
-    color: C.primary,
+    color: Colors.primary,
     marginBottom: 8,
   },
   goalTitle: {
     fontFamily: 'SpaceGrotesk-Bold',
     fontSize: 28,
-    color: C.onSurface,
+    color: Colors.onSurface,
     letterSpacing: -1,
     marginBottom: 4,
   },
   goalText: {
     fontFamily: 'Inter',
     fontSize: 13,
-    color: C.onSurfaceVariant,
+    color: Colors.onSurfaceVariant,
   },
 });

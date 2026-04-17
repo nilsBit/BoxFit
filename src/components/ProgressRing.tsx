@@ -1,14 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
-
-const Colors = {
-  surfaceContainerHighest: '#353534',
-  primaryContainer: '#ff535b',
-  onSurfaceVariant: '#e4bebc',
-  onSurface: '#e5e2e1',
-  primary: '#ffb3b1',
-};
+import { Colors } from '../constants/theme';
 
 interface Props {
   progress: number;

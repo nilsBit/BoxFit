@@ -1,13 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-
-const Colors = {
-  surfaceContainerLow: '#1c1b1b',
-  surfaceContainerHighest: '#353534',
-  primaryContainer: '#ff535b',
-};
-
-type WorkoutPhase = 'warmup' | 'circuit' | 'finisher' | 'closing' | 'done';
+import { Colors } from '../constants/theme';
+import { WorkoutPhase } from '../types';
 
 const PHASES: WorkoutPhase[] = ['warmup', 'circuit', 'finisher', 'closing'];
 

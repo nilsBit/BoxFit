@@ -1,13 +1,6 @@
 import React from 'react';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
-
-const Colors = {
-  surfaceContainerLow: '#1c1b1b',
-  surfaceContainerHigh: '#2a2a2a',
-  primaryContainer: '#ff535b',
-  onSurface: '#e5e2e1',
-  onSurfaceVariant: '#e4bebc',
-};
+import { Colors } from '../constants/theme';
 
 interface Props {
   data: { date: string; count: number }[];

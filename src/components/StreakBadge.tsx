@@ -1,12 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-
-const Colors = {
-  surfaceContainerHighest: '#353534',
-  primaryContainer: '#ff535b',
-  onSurface: '#e5e2e1',
-  onSurfaceVariant: '#e4bebc',
-};
+import { Colors } from '../constants/theme';
 
 interface Props {
   streak: number;

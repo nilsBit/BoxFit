@@ -7,22 +7,12 @@ import { ProgressRing } from '../../src/components/ProgressRing';
 import { StreakBadge } from '../../src/components/StreakBadge';
 import { WorkoutCard } from '../../src/components/WorkoutCard';
 import { DAY_WORKOUTS } from '../../src/constants/workouts';
-import { getWorkoutForDay, getAllWorkouts } from '../../src/utils/workoutEngine';
+import { getAllWorkouts } from '../../src/utils/workoutEngine';
 import { Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
 import * as Haptics from 'expo-haptics';
 import { DayWorkout } from '../../src/types';
-
-const C = {
-  background: '#131313',
-  surfaceContainerLow: '#1c1b1b',
-  surfaceContainerHighest: '#353534',
-  primary: '#ffb3b1',
-  primaryContainer: '#ff535b',
-  onSurface: '#e5e2e1',
-  onSurfaceVariant: '#e4bebc',
-  tertiary: '#6fd8cc',
-};
+import { Colors } from '../../src/constants/theme';
 
 function getGreeting(): string {
   const h = new Date().getHours();
@@ -74,8 +64,6 @@ export default function HomeScreen() {
   }
 
   const progressPercent = ws.currentWeek / 12;
-  const nextDay = ws.trainingDay < 5 ? ws.trainingDay + 1 : 0;
-  const nextWorkout = nextDay > 0 ? getWorkoutForDay(nextDay, ws.currentWeek) : null;
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
@@ -187,7 +175,7 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: C.background },
+  container: { flex: 1, backgroundColor: Colors.background },
   content: { paddingHorizontal: 20, gap: 24 },
   header: {
     flexDirection: 'row',
@@ -199,17 +187,17 @@ const styles = StyleSheet.create({
     fontFamily: 'SpaceGrotesk-Bold',
     fontSize: 10,
     letterSpacing: 2,
-    color: C.primary,
+    color: Colors.primary,
     textTransform: 'uppercase',
   },
   champ: {
     fontFamily: 'SpaceGrotesk-Bold',
     fontSize: 22,
-    color: C.onSurface,
+    color: Colors.onSurface,
     letterSpacing: -0.5,
   },
   settingsBtn: {
-    backgroundColor: C.surfaceContainerHighest,
+    backgroundColor: Colors.surfaceContainerHighest,
     width: 40,
     height: 40,
     borderRadius: 20,
@@ -218,7 +206,7 @@ const styles = StyleSheet.create({
   },
   heroSection: { gap: 16 },
   ringCard: {
-    backgroundColor: C.surfaceContainerLow,
+    backgroundColor: Colors.surfaceContainerLow,
     borderRadius: 24,
     padding: 24,
     alignItems: 'center',
@@ -227,7 +215,7 @@ const styles = StyleSheet.create({
   miniStats: { flexDirection: 'row', gap: 12 },
   miniStat: {
     flex: 1,
-    backgroundColor: C.surfaceContainerLow,
+    backgroundColor: Colors.surfaceContainerLow,
     borderRadius: 16,
     padding: 14,
   },
@@ -235,22 +223,22 @@ const styles = StyleSheet.create({
     fontFamily: 'SpaceGrotesk-Bold',
     fontSize: 9,
     letterSpacing: 2,
-    color: C.onSurfaceVariant,
+    color: Colors.onSurfaceVariant,
     marginBottom: 6,
   },
   miniStatValue: {
     fontFamily: 'SpaceGrotesk-Bold',
     fontSize: 20,
-    color: C.onSurface,
+    color: Colors.onSurface,
   },
   miniStatUnit: {
     fontSize: 11,
     fontFamily: 'Inter',
-    color: C.onSurfaceVariant,
+    color: Colors.onSurfaceVariant,
     opacity: 0.6,
   },
   restDayCard: {
-    backgroundColor: C.surfaceContainerLow,
+    backgroundColor: Colors.surfaceContainerLow,
     borderRadius: 24,
     padding: 32,
     alignItems: 'center',
@@ -260,13 +248,13 @@ const styles = StyleSheet.create({
   restDayTitle: {
     fontFamily: 'SpaceGrotesk-Bold',
     fontSize: 24,
-    color: C.onSurface,
+    color: Colors.onSurface,
     letterSpacing: 2,
   },
   restDayText: {
     fontFamily: 'Inter',
     fontSize: 14,
-    color: C.onSurfaceVariant,
+    color: Colors.onSurfaceVariant,
     textAlign: 'center',
   },
   nextSection: { gap: 10 },
@@ -274,10 +262,10 @@ const styles = StyleSheet.create({
     fontFamily: 'SpaceGrotesk-Bold',
     fontSize: 10,
     letterSpacing: 3,
-    color: C.onSurfaceVariant,
+    color: Colors.onSurfaceVariant,
   },
   nextCard: {
-    backgroundColor: C.surfaceContainerLow,
+    backgroundColor: Colors.surfaceContainerLow,
     borderRadius: 16,
     padding: 16,
     flexDirection: 'row',
@@ -287,7 +275,7 @@ const styles = StyleSheet.create({
   nextIconWrap: {
     width: 44,
     height: 44,
-    backgroundColor: C.surfaceContainerHighest,
+    backgroundColor: Colors.surfaceContainerHighest,
     borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
@@ -295,12 +283,12 @@ const styles = StyleSheet.create({
   nextTitle: {
     fontFamily: 'SpaceGrotesk-Bold',
     fontSize: 15,
-    color: C.onSurface,
+    color: Colors.onSurface,
   },
   nextSubtitle: {
     fontFamily: 'Inter',
     fontSize: 12,
-    color: C.onSurfaceVariant,
+    color: Colors.onSurfaceVariant,
     marginTop: 2,
   },
   sparringCard: {
@@ -325,7 +313,7 @@ const styles = StyleSheet.create({
   sparringSub: {
     fontFamily: 'Inter',
     fontSize: 12,
-    color: C.onSurfaceVariant,
+    color: Colors.onSurfaceVariant,
     marginTop: 2,
   },
   allWorkoutsSection: { gap: 10 },
@@ -333,17 +321,17 @@ const styles = StyleSheet.create({
     fontFamily: 'SpaceGrotesk-Bold',
     fontSize: 11,
     letterSpacing: 3,
-    color: C.onSurfaceVariant,
+    color: Colors.onSurfaceVariant,
   },
   sectionHint: {
     fontFamily: 'Inter',
     fontSize: 13,
-    color: C.onSurfaceVariant,
+    color: Colors.onSurfaceVariant,
     opacity: 0.6,
     marginBottom: 4,
   },
   miniCard: {
-    backgroundColor: C.surfaceContainerLow,
+    backgroundColor: Colors.surfaceContainerLow,
     borderRadius: 16,
     padding: 14,
     flexDirection: 'row',
@@ -360,13 +348,13 @@ const styles = StyleSheet.create({
   miniCardTitle: {
     fontFamily: 'SpaceGrotesk-Bold',
     fontSize: 15,
-    color: C.onSurface,
+    color: Colors.onSurface,
     letterSpacing: -0.3,
   },
   miniCardSubtitle: {
     fontFamily: 'Inter',
     fontSize: 12,
-    color: C.onSurfaceVariant,
+    color: Colors.onSurfaceVariant,
     marginTop: 1,
   },
   miniCardMeta: {
@@ -377,7 +365,7 @@ const styles = StyleSheet.create({
   miniCardMetaText: {
     fontFamily: 'Inter-Medium',
     fontSize: 11,
-    color: C.onSurfaceVariant,
+    color: Colors.onSurfaceVariant,
     opacity: 0.7,
   },
 });

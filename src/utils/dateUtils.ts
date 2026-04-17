@@ -37,6 +37,25 @@ export function calculateStreak(workouts: CompletedWorkout[]): number {
   return streak;
 }
 
+export function calculateMaxStreak(workouts: CompletedWorkout[]): number {
+  if (workouts.length === 0) return 0;
+  const dates = [...new Set(workouts.map((w) => w.date))].sort();
+  let max = 1;
+  let current = 1;
+  for (let i = 1; i < dates.length; i++) {
+    const prev = new Date(dates[i - 1] + 'T12:00:00');
+    const curr = new Date(dates[i] + 'T12:00:00');
+    const diff = (curr.getTime() - prev.getTime()) / (1000 * 60 * 60 * 24);
+    if (diff === 1) {
+      current++;
+      max = Math.max(max, current);
+    } else {
+      current = 1;
+    }
+  }
+  return max;
+}
+
 export function getWeekNumber(startDate: string): number {
   const start = new Date(startDate + 'T00:00:00');
   const now = new Date();

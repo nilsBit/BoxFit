@@ -16,7 +16,10 @@ export function useTimer(): UseTimerReturn {
   const [isRunning, setIsRunning] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const isPausedRef = useRef(false);
   const onComplete = useRef<(() => void) | null>(null);
+
+  useEffect(() => { isPausedRef.current = isPaused; }, [isPaused]);
 
   const clearTimer = useCallback(() => {
     if (intervalRef.current) {
@@ -25,12 +28,8 @@ export function useTimer(): UseTimerReturn {
     }
   }, []);
 
-  const start = useCallback((seconds: number) => {
+  const startTicking = useCallback(() => {
     clearTimer();
-    setSecondsRemaining(seconds);
-    setIsRunning(true);
-    setIsPaused(false);
-
     intervalRef.current = setInterval(() => {
       setSecondsRemaining((prev) => {
         if (prev <= 1) {
@@ -43,6 +42,13 @@ export function useTimer(): UseTimerReturn {
       });
     }, 1000);
   }, [clearTimer]);
+
+  const start = useCallback((seconds: number) => {
+    setSecondsRemaining(seconds);
+    setIsRunning(true);
+    setIsPaused(false);
+    startTicking();
+  }, [startTicking]);
 
   const pause = useCallback(() => {
     clearTimer();
@@ -50,21 +56,10 @@ export function useTimer(): UseTimerReturn {
   }, [clearTimer]);
 
   const resume = useCallback(() => {
-    if (!isPaused) return;
+    if (!isPausedRef.current) return;
     setIsPaused(false);
-
-    intervalRef.current = setInterval(() => {
-      setSecondsRemaining((prev) => {
-        if (prev <= 1) {
-          clearTimer();
-          setIsRunning(false);
-          setTimeout(() => onComplete.current?.(), 0);
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-  }, [isPaused, clearTimer]);
+    startTicking();
+  }, [startTicking]);
 
   const reset = useCallback(() => {
     clearTimer();

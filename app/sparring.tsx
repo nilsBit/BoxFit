@@ -15,20 +15,9 @@ import {
   getRandomCall,
 } from '../src/constants/sparring';
 
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
+import { Colors } from '../src/constants/theme';
 
-const C = {
-  background: '#131313',
-  surfaceContainerLow: '#1c1b1b',
-  surfaceContainerHigh: '#2a2a2a',
-  surfaceContainerHighest: '#353534',
-  primary: '#ffb3b1',
-  primaryContainer: '#ff535b',
-  onSurface: '#e5e2e1',
-  onSurfaceVariant: '#e4bebc',
-  tertiary: '#6fd8cc',
-  tertiaryContainer: '#2fa096',
-};
+const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 const CALL_COLORS = {
   red: { bg: '#ff535b25', border: '#ff535b', text: '#ff535b' },
@@ -232,7 +221,7 @@ export default function SparringScreen() {
                   onPress={() => setIntensity(key)}
                 >
                   <View style={{ flex: 1 }}>
-                    <Text style={[styles.intensityName, isSelected && { color: C.primaryContainer }]}>
+                    <Text style={[styles.intensityName, isSelected && { color: Colors.primaryContainer }]}>
                       {cfg.label}
                     </Text>
                     <Text style={styles.intensityMeta}>
@@ -362,41 +351,41 @@ export default function SparringScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: C.background },
+  container: { flex: 1, backgroundColor: Colors.background },
 
   // Select screen
   selectScreen: { flex: 1, paddingHorizontal: 24, paddingTop: 16 },
   backBtn: {
     width: 36, height: 36, borderRadius: 18,
-    backgroundColor: C.surfaceContainerHigh,
+    backgroundColor: Colors.surfaceContainerHigh,
     alignItems: 'center', justifyContent: 'center', marginBottom: 16,
   },
-  backIcon: { color: C.onSurface, fontSize: 24, marginTop: -2 },
+  backIcon: { color: Colors.onSurface, fontSize: 24, marginTop: -2 },
   selectIcon: { fontSize: 56, textAlign: 'center' },
   selectTitle: {
-    fontFamily: 'SpaceGrotesk-Bold', fontSize: 36, color: C.onSurface,
+    fontFamily: 'SpaceGrotesk-Bold', fontSize: 36, color: Colors.onSurface,
     textAlign: 'center', letterSpacing: -1, lineHeight: 42, marginTop: 8,
   },
   selectDesc: {
-    fontFamily: 'Inter', fontSize: 14, color: C.onSurfaceVariant,
+    fontFamily: 'Inter', fontSize: 14, color: Colors.onSurfaceVariant,
     textAlign: 'center', lineHeight: 22, marginTop: 8, marginBottom: 24,
   },
   intensityList: { gap: 10, flex: 1 },
   intensityCard: {
-    backgroundColor: C.surfaceContainerLow, borderRadius: 16, padding: 16,
+    backgroundColor: Colors.surfaceContainerLow, borderRadius: 16, padding: 16,
     flexDirection: 'row', alignItems: 'center', borderWidth: 1, borderColor: 'transparent',
   },
-  intensityCardActive: { borderColor: C.primaryContainer },
+  intensityCardActive: { borderColor: Colors.primaryContainer },
   intensityName: {
-    fontFamily: 'SpaceGrotesk-Bold', fontSize: 16, color: C.onSurface,
+    fontFamily: 'SpaceGrotesk-Bold', fontSize: 16, color: Colors.onSurface,
   },
   intensityMeta: {
-    fontFamily: 'Inter', fontSize: 12, color: C.onSurfaceVariant, marginTop: 2,
+    fontFamily: 'Inter', fontSize: 12, color: Colors.onSurfaceVariant, marginTop: 2,
   },
   startBtn: {
-    backgroundColor: C.primaryContainer, borderRadius: 999, height: 60,
+    backgroundColor: Colors.primaryContainer, borderRadius: 999, height: 60,
     alignItems: 'center', justifyContent: 'center', marginTop: 16, marginBottom: 24,
-    shadowColor: C.primaryContainer, shadowOpacity: 0.4, shadowRadius: 20,
+    shadowColor: Colors.primaryContainer, shadowOpacity: 0.4, shadowRadius: 20,
     shadowOffset: { width: 0, height: 10 },
   },
   startBtnText: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 18, color: '#fff', letterSpacing: 1 },
@@ -406,53 +395,53 @@ const styles = StyleSheet.create({
   header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   quitBtn: {
     width: 36, height: 36, borderRadius: 18,
-    backgroundColor: C.surfaceContainerHigh, alignItems: 'center', justifyContent: 'center',
+    backgroundColor: Colors.surfaceContainerHigh, alignItems: 'center', justifyContent: 'center',
   },
-  quitIcon: { color: C.onSurfaceVariant, fontSize: 16 },
+  quitIcon: { color: Colors.onSurfaceVariant, fontSize: 16 },
   headerTitle: {
-    fontFamily: 'SpaceGrotesk-Bold', fontSize: 14, color: C.onSurface, letterSpacing: 1,
+    fontFamily: 'SpaceGrotesk-Bold', fontSize: 14, color: Colors.onSurface, letterSpacing: 1,
   },
   intensityBadge: {
-    backgroundColor: C.surfaceContainerHigh, paddingHorizontal: 10, paddingVertical: 4, borderRadius: 999,
+    backgroundColor: Colors.surfaceContainerHigh, paddingHorizontal: 10, paddingVertical: 4, borderRadius: 999,
   },
-  intensityBadgeText: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 10, color: C.primary, letterSpacing: 1 },
+  intensityBadgeText: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 10, color: Colors.primary, letterSpacing: 1 },
 
   // Call card
   callCard: {
     borderRadius: 20, padding: 24, alignItems: 'center', gap: 8,
     borderWidth: 2, minHeight: 180, justifyContent: 'center',
   },
-  callType: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 11, letterSpacing: 3, color: C.onSurfaceVariant },
+  callType: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 11, letterSpacing: 3, color: Colors.onSurfaceVariant },
   callIcon: { fontSize: 48 },
   callText: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 32, letterSpacing: 2, textAlign: 'center' },
   callHint: { fontFamily: 'Inter-SemiBold', fontSize: 14, color: '#6AAFFF', marginTop: 4 },
 
   // Countdown
   countdownWrap: { alignItems: 'center', justifyContent: 'center', flex: 1 },
-  countdownNum: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 120, color: C.primaryContainer },
-  countdownLabel: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 16, color: C.onSurfaceVariant, letterSpacing: 3 },
+  countdownNum: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 120, color: Colors.primaryContainer },
+  countdownLabel: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 16, color: Colors.onSurfaceVariant, letterSpacing: 3 },
 
   // Rest
   restWrap: { alignItems: 'center', gap: 8 },
-  restTitle: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 28, color: C.tertiary },
-  restSub: { fontFamily: 'Inter', fontSize: 14, color: C.onSurfaceVariant },
+  restTitle: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 28, color: Colors.tertiary },
+  restSub: { fontFamily: 'Inter', fontSize: 14, color: Colors.onSurfaceVariant },
 
   // Timer
   timerWrap: { alignItems: 'center' },
 
   // History
   historyWrap: {
-    backgroundColor: C.surfaceContainerLow, borderRadius: 12, padding: 12, gap: 4,
+    backgroundColor: Colors.surfaceContainerLow, borderRadius: 12, padding: 12, gap: 4,
   },
-  historyLabel: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 9, letterSpacing: 2, color: C.onSurfaceVariant },
-  historyItem: { fontFamily: 'Inter-Medium', fontSize: 13, color: C.onSurface },
+  historyLabel: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 9, letterSpacing: 2, color: Colors.onSurfaceVariant },
+  historyItem: { fontFamily: 'Inter-Medium', fontSize: 13, color: Colors.onSurface },
 
   // Controls
   controls: { paddingBottom: 24 },
   mainBtn: {
-    height: 60, borderRadius: 30, backgroundColor: C.primaryContainer,
+    height: 60, borderRadius: 30, backgroundColor: Colors.primaryContainer,
     flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8,
-    shadowColor: C.primaryContainer, shadowOpacity: 0.5, shadowRadius: 20,
+    shadowColor: Colors.primaryContainer, shadowOpacity: 0.5, shadowRadius: 20,
     shadowOffset: { width: 0, height: 10 },
   },
   mainBtnIcon: { fontSize: 22, color: '#fff' },
@@ -461,11 +450,11 @@ const styles = StyleSheet.create({
   // Done
   doneScreen: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 16, paddingHorizontal: 24 },
   doneTitle: {
-    fontFamily: 'SpaceGrotesk-Bold', fontSize: 36, color: C.onSurface, textAlign: 'center', lineHeight: 42,
+    fontFamily: 'SpaceGrotesk-Bold', fontSize: 36, color: Colors.onSurface, textAlign: 'center', lineHeight: 42,
   },
-  doneSub: { fontFamily: 'Inter-Medium', fontSize: 14, color: C.onSurfaceVariant },
+  doneSub: { fontFamily: 'Inter-Medium', fontSize: 14, color: Colors.onSurfaceVariant },
   doneBtn: {
-    backgroundColor: C.primaryContainer, paddingHorizontal: 40, paddingVertical: 18,
+    backgroundColor: Colors.primaryContainer, paddingHorizontal: 40, paddingVertical: 18,
     borderRadius: 999, marginTop: 16,
   },
   doneBtnText: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 16, color: '#fff', letterSpacing: 1 },

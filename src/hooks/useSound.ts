@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useCallback } from 'react';
 import { Audio } from 'expo-av';
 
 export function useSound() {
@@ -17,7 +17,7 @@ export function useSound() {
     };
   }, []);
 
-  const playBeep = async () => {
+  const playBeep = useCallback(async () => {
     try {
       if (beepRef.current) {
         await beepRef.current.replayAsync();
@@ -31,9 +31,9 @@ export function useSound() {
     } catch (e) {
       console.warn('Beep sound failed:', e);
     }
-  };
+  }, []);
 
-  const playGong = async () => {
+  const playGong = useCallback(async () => {
     try {
       if (gongRef.current) {
         await gongRef.current.replayAsync();
@@ -47,7 +47,7 @@ export function useSound() {
     } catch (e) {
       console.warn('Gong sound failed:', e);
     }
-  };
+  }, []);
 
   return { playBeep, playGong };
 }

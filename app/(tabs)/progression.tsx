@@ -5,18 +5,7 @@ import { useStorage } from '../../src/hooks/useStorage';
 import { useWorkoutState } from '../../src/hooks/useWorkoutState';
 import { TimelineItem } from '../../src/components/TimelineItem';
 import { PROGRESSION_LEVELS } from '../../src/constants/progression';
-
-const C = {
-  background: '#131313',
-  surfaceContainerLow: '#1c1b1b',
-  surfaceContainerHigh: '#2a2a2a',
-  surfaceContainerHighest: '#353534',
-  primary: '#ffb3b1',
-  primaryContainer: '#ff535b',
-  onSurface: '#e5e2e1',
-  onSurfaceVariant: '#e4bebc',
-  tertiary: '#6fd8cc',
-};
+import { Colors } from '../../src/constants/theme';
 
 export default function ProgressionScreen() {
   const { state, isLoaded, toggleChecklistItem } = useStorage();
@@ -140,25 +129,25 @@ export default function ProgressionScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: C.background },
+  container: { flex: 1, backgroundColor: Colors.background },
   content: { paddingHorizontal: 20, gap: 20 },
   phaseLabel: {
     fontFamily: 'SpaceGrotesk-Bold',
     fontSize: 11,
     letterSpacing: 2,
-    color: C.primary,
+    color: Colors.primary,
     marginTop: 8,
   },
   title: {
     fontFamily: 'SpaceGrotesk-Bold',
     fontSize: 32,
-    color: C.onSurface,
+    color: Colors.onSurface,
     letterSpacing: -1,
     fontStyle: 'italic',
   },
   timeline: { marginTop: 8 },
   progressCard: {
-    backgroundColor: C.surfaceContainerLow,
+    backgroundColor: Colors.surfaceContainerLow,
     borderRadius: 16,
     padding: 20,
     gap: 8,
@@ -167,36 +156,36 @@ const styles = StyleSheet.create({
     fontFamily: 'SpaceGrotesk-Bold',
     fontSize: 10,
     letterSpacing: 2,
-    color: C.primary,
+    color: Colors.primary,
   },
   progressRow: { flexDirection: 'row', alignItems: 'baseline', gap: 8 },
   progressValue: {
     fontFamily: 'SpaceGrotesk-Bold',
     fontSize: 36,
-    color: C.onSurface,
+    color: Colors.onSurface,
     letterSpacing: -1,
   },
   progressUnit: {
     fontFamily: 'SpaceGrotesk-Bold',
     fontSize: 11,
-    color: C.onSurfaceVariant,
+    color: Colors.onSurfaceVariant,
     letterSpacing: 1,
   },
   progressBarBg: {
     height: 4,
-    backgroundColor: C.surfaceContainerHighest,
+    backgroundColor: Colors.surfaceContainerHighest,
     borderRadius: 2,
     overflow: 'hidden',
   },
   progressBarFill: {
     height: '100%',
-    backgroundColor: C.primaryContainer,
+    backgroundColor: Colors.primaryContainer,
     borderRadius: 2,
   },
   bentoRow: { flexDirection: 'row', gap: 12 },
   bentoCard: {
     flex: 1,
-    backgroundColor: C.surfaceContainerHigh,
+    backgroundColor: Colors.surfaceContainerHigh,
     borderRadius: 16,
     padding: 16,
     aspectRatio: 1,
@@ -205,16 +194,16 @@ const styles = StyleSheet.create({
   bentoValue: {
     fontFamily: 'SpaceGrotesk-Bold',
     fontSize: 24,
-    color: C.onSurface,
+    color: Colors.onSurface,
   },
   bentoLabel: {
     fontFamily: 'SpaceGrotesk-Bold',
     fontSize: 9,
     letterSpacing: 2,
-    color: C.onSurfaceVariant,
+    color: Colors.onSurfaceVariant,
   },
   checklistSection: {
-    backgroundColor: C.surfaceContainerLow,
+    backgroundColor: Colors.surfaceContainerLow,
     borderRadius: 16,
     padding: 20,
     gap: 12,
@@ -223,7 +212,7 @@ const styles = StyleSheet.create({
     fontFamily: 'SpaceGrotesk-Bold',
     fontSize: 12,
     letterSpacing: 2,
-    color: C.onSurface,
+    color: Colors.onSurface,
     marginBottom: 4,
   },
   checklistItem: { flexDirection: 'row', alignItems: 'center', gap: 12 },
@@ -232,20 +221,20 @@ const styles = StyleSheet.create({
     height: 24,
     borderRadius: 6,
     borderWidth: 1.5,
-    borderColor: C.primary + '60',
-    backgroundColor: C.surfaceContainerHighest,
+    borderColor: Colors.primary + '60',
+    backgroundColor: Colors.surfaceContainerHighest,
     alignItems: 'center',
     justifyContent: 'center',
   },
   checkboxChecked: {
-    backgroundColor: C.primaryContainer + '30',
-    borderColor: C.primary,
+    backgroundColor: Colors.primaryContainer + '30',
+    borderColor: Colors.primary,
   },
-  checkmark: { color: C.primary, fontWeight: 'bold', fontSize: 14 },
+  checkmark: { color: Colors.primary, fontWeight: 'bold', fontSize: 14 },
   checklistText: {
     fontFamily: 'Inter-Medium',
     fontSize: 14,
-    color: C.onSurface,
+    color: Colors.onSurface,
     flex: 1,
   },
   checklistTextDone: {
@@ -253,7 +242,7 @@ const styles = StyleSheet.create({
     opacity: 0.5,
   },
   motivationCard: {
-    backgroundColor: C.surfaceContainerHighest,
+    backgroundColor: Colors.surfaceContainerHighest,
     borderRadius: 16,
     padding: 24,
     gap: 8,
@@ -261,7 +250,7 @@ const styles = StyleSheet.create({
   motivationQuote: {
     fontFamily: 'SpaceGrotesk-Bold',
     fontSize: 18,
-    color: C.onSurface,
+    color: Colors.onSurface,
     fontStyle: 'italic',
     lineHeight: 26,
   },
@@ -269,6 +258,6 @@ const styles = StyleSheet.create({
     fontFamily: 'SpaceGrotesk-Bold',
     fontSize: 10,
     letterSpacing: 2,
-    color: C.primary,
+    color: Colors.primary,
   },
 });

@@ -1,14 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-
-const Colors = {
-  surfaceContainerLow: '#1c1b1b',
-  surfaceContainerHighest: '#353534',
-  primaryContainer: '#ff535b',
-  onSurface: '#e5e2e1',
-  onSurfaceVariant: '#e4bebc',
-  tertiary: '#6fd8cc',
-};
+import { Colors } from '../constants/theme';
 
 interface Props {
   data: { label: string; count: number }[];

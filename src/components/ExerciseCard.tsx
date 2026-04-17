@@ -1,24 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Pressable, StyleSheet } from 'react-native';
-
-const Colors = {
-  surfaceContainerLow: '#1c1b1b',
-  surfaceContainerHighest: '#353534',
-  onSurface: '#e5e2e1',
-  onSurfaceVariant: '#e4bebc',
-  primary: '#ffb3b1',
-};
-
-interface Exercise {
-  id: string;
-  name: string;
-  description: string;
-  muscleGroups: string[];
-  difficulty: 'Anfänger' | 'Mittel' | 'Fortgeschritten';
-  equipment?: string;
-  icon?: string;
-  tips?: string;
-}
+import { Colors } from '../constants/theme';
+import { Exercise } from '../types';
 
 interface Props {
   exercise: Exercise;
