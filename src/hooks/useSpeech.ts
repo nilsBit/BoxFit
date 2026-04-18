@@ -8,7 +8,7 @@ interface VoiceIds {
   female: string | undefined;
 }
 
-export function useSpeech() {
+export function useSpeech(enabled: boolean = true) {
   const lastSpoken = useRef<{ text: string; time: number }>({ text: '', time: 0 });
   const voicesRef = useRef<VoiceIds>({ male: undefined, female: undefined });
 
@@ -47,6 +47,7 @@ export function useSpeech() {
   }, []);
 
   const speak = useCallback((text: string, voice?: SpeechVoice) => {
+    if (!enabled) return;
     const now = Date.now();
     if (text === lastSpoken.current.text && now - lastSpoken.current.time < 500) return;
     lastSpoken.current = { text, time: now };
@@ -61,7 +62,7 @@ export function useSpeech() {
     } else {
       Speech.speak(text, { language: 'de-DE', voice: voices.male, rate: 1.0, pitch: 0.85 });
     }
-  }, []);
+  }, [enabled]);
 
   const announceExercise = useCallback((name: string) => { speak(name); }, [speak]);
   const announceRest = useCallback(() => { speak('Pause'); }, [speak]);

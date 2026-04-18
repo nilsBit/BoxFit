@@ -68,6 +68,7 @@ export interface AppState {
   currentWeek: number;
   startDate: string;
   progressionChecklist: Record<string, boolean>;
+  speechEnabled: boolean;
 }
 
 export type WorkoutPhase = 'warmup' | 'circuit' | 'finisher' | 'closing' | 'done';

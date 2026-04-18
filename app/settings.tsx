@@ -10,8 +10,7 @@ import { Colors } from '../src/constants/theme';
 
 export default function SettingsScreen() {
   const router = useRouter();
-  const { state, resetAll, setStartDate, setCurrentWeek } = useStorage();
-  const [speechEnabled, setSpeechEnabled] = useState(true);
+  const { state, resetAll, setStartDate, setCurrentWeek, setSpeechEnabled } = useStorage();
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [editingWeek, setEditingWeek] = useState(false);
 
@@ -159,10 +158,10 @@ export default function SettingsScreen() {
                 <Text style={styles.rowHint}>Übungen werden laut angesagt</Text>
               </View>
               <Switch
-                value={speechEnabled}
+                value={state.speechEnabled ?? true}
                 onValueChange={setSpeechEnabled}
                 trackColor={{ false: Colors.surfaceContainerHighest, true: Colors.primaryContainer }}
-                thumbColor={speechEnabled ? Colors.primary : Colors.onSurfaceVariant}
+                thumbColor={(state.speechEnabled ?? true) ? Colors.primary : Colors.onSurfaceVariant}
               />
             </View>
           </View>

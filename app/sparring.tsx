@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import * as Haptics from 'expo-haptics';
 import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
+import { useStorage } from '../src/hooks/useStorage';
 import { useTimer } from '../src/hooks/useTimer';
 import { useSound } from '../src/hooks/useSound';
 import { useSpeech } from '../src/hooks/useSpeech';
@@ -29,9 +30,10 @@ type SparringPhase = 'select' | 'countdown' | 'round' | 'rest' | 'done';
 
 export default function SparringScreen() {
   const router = useRouter();
+  const { state } = useStorage();
   const timer = useTimer();
   const { playBeep, playGong } = useSound();
-  const speech = useSpeech();
+  const speech = useSpeech(state.speechEnabled ?? true);
 
   const [phase, setPhase] = useState<SparringPhase>('select');
   const [intensity, setIntensity] = useState<SparringIntensity>('mittel');

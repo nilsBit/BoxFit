@@ -26,7 +26,7 @@ export default function WorkoutScreen() {
   const { state, completeWorkout } = useStorage();
   const timer = useTimer();
   const { playBeep, playGong } = useSound();
-  const speech = useSpeech();
+  const speech = useSpeech(state.speechEnabled ?? true);
 
   const dayNum = parseInt(day ?? '1', 10);
   const currentWeek = getWeekNumber(state.startDate);

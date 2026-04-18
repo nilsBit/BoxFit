@@ -10,6 +10,7 @@ const DEFAULT_STATE: AppState = {
   currentWeek: 1,
   startDate: getTodayISO(),
   progressionChecklist: {},
+  speechEnabled: true,
 };
 
 export function useStorage() {
@@ -86,9 +87,14 @@ export function useStorage() {
     await saveState({ ...current, startDate: newStart.toISOString().split('T')[0] });
   }, [saveState]);
 
+  const setSpeechEnabled = useCallback(async (enabled: boolean) => {
+    const current = stateRef.current;
+    await saveState({ ...current, speechEnabled: enabled });
+  }, [saveState]);
+
   const resetAll = useCallback(async () => {
     await saveState({ ...DEFAULT_STATE, startDate: getTodayISO() });
   }, [saveState]);
 
-  return { state, isLoaded, completeWorkout, toggleChecklistItem, setStartDate, setCurrentWeek, resetAll };
+  return { state, isLoaded, completeWorkout, toggleChecklistItem, setStartDate, setCurrentWeek, setSpeechEnabled, resetAll };
 }
