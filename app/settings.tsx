@@ -40,18 +40,23 @@ export default function SettingsScreen() {
   };
 
   const handleNotificationToggle = async (enabled: boolean) => {
-    if (enabled) {
-      const granted = await requestPermission();
-      if (!granted) {
-        Alert.alert('Berechtigung benötigt', 'Bitte erlaube Benachrichtigungen in den Systemeinstellungen.');
-        return;
+    try {
+      if (enabled) {
+        const granted = await requestPermission();
+        if (!granted) {
+          Alert.alert('Berechtigung benötigt', 'Bitte erlaube Benachrichtigungen in den Systemeinstellungen.');
+          return;
+        }
+        await scheduleDaily(state.notificationHour ?? 18, state.notificationMinute ?? 0);
+      } else {
+        await cancelAll();
       }
-      await scheduleDaily(state.notificationHour ?? 18, state.notificationMinute ?? 0);
-    } else {
-      await cancelAll();
+      await setNotificationSettings(enabled, state.notificationHour ?? 18, state.notificationMinute ?? 0);
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    } catch (e) {
+      console.warn('Notification toggle error:', e);
+      await setNotificationSettings(enabled, state.notificationHour ?? 18, state.notificationMinute ?? 0);
     }
-    await setNotificationSettings(enabled, state.notificationHour ?? 18, state.notificationMinute ?? 0);
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
   };
 
   const adjustHour = async (delta: number) => {
