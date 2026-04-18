@@ -1,14 +1,16 @@
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useStorage } from '../../src/hooks/useStorage';
 import { useWorkoutState } from '../../src/hooks/useWorkoutState';
 import { HeatmapCalendar } from '../../src/components/HeatmapCalendar';
 import { WeeklyBarChart } from '../../src/components/WeeklyBarChart';
 import { getHeatmapData, getWorkoutsPerWeek, calculateMaxStreak } from '../../src/utils/dateUtils';
+import { useRouter } from 'expo-router';
 import { Colors } from '../../src/constants/theme';
 
 export default function FortschrittScreen() {
+  const router = useRouter();
   const { state, isLoaded } = useStorage();
   const ws = useWorkoutState(state);
 
@@ -80,6 +82,15 @@ export default function FortschrittScreen() {
             </View>
           );
         })()}
+
+        {/* History Card */}
+        <Pressable
+          style={({ pressed }) => [styles.historyCard, pressed && { opacity: 0.8 }]}
+          onPress={() => router.push('/history')}
+        >
+          <Text style={styles.historyCardTitle}>WORKOUT-VERLAUF</Text>
+          <Text style={styles.historyCardSub}>Alle abgeschlossenen Workouts ansehen</Text>
+        </Pressable>
 
         <View style={{ height: 100 }} />
       </ScrollView>
@@ -157,6 +168,23 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   goalText: {
+    fontFamily: 'Inter',
+    fontSize: 13,
+    color: Colors.onSurfaceVariant,
+  },
+  historyCard: {
+    backgroundColor: Colors.surfaceContainerLow,
+    borderRadius: 16,
+    padding: 24,
+  },
+  historyCardTitle: {
+    fontFamily: 'SpaceGrotesk-Bold',
+    fontSize: 16,
+    color: Colors.onSurface,
+    letterSpacing: 1,
+    marginBottom: 4,
+  },
+  historyCardSub: {
     fontFamily: 'Inter',
     fontSize: 13,
     color: Colors.onSurfaceVariant,

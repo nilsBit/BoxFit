@@ -69,6 +69,12 @@ export interface AppState {
   startDate: string;
   progressionChecklist: Record<string, boolean>;
   speechEnabled: boolean;
+  kbWeight: number;
+  trainingDays: number[]; // 1=Mo, 2=Di, ..., 7=So
+  onboardingDone: boolean;
+  notificationsEnabled: boolean;
+  notificationHour: number;
+  notificationMinute: number;
 }
 
 export type WorkoutPhase = 'warmup' | 'circuit' | 'finisher' | 'closing' | 'done';

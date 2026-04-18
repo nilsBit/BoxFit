@@ -9,7 +9,7 @@ import { WorkoutCard } from '../../src/components/WorkoutCard';
 import { DAY_WORKOUTS } from '../../src/constants/workouts';
 import { getAllWorkouts } from '../../src/utils/workoutEngine';
 import { Pressable } from 'react-native';
-import { useRouter } from 'expo-router';
+import { useRouter, Redirect } from 'expo-router';
 import * as Haptics from 'expo-haptics';
 import { DayWorkout } from '../../src/types';
 import { Colors } from '../../src/constants/theme';
@@ -61,6 +61,10 @@ export default function HomeScreen() {
 
   if (!isLoaded) {
     return <View style={styles.container} />;
+  }
+
+  if (!state.onboardingDone) {
+    return <Redirect href="/onboarding" />;
   }
 
   const progressPercent = ws.currentWeek / 12;

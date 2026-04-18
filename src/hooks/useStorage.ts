@@ -11,6 +11,12 @@ const DEFAULT_STATE: AppState = {
   startDate: getTodayISO(),
   progressionChecklist: {},
   speechEnabled: true,
+  kbWeight: 16,
+  trainingDays: [1, 2, 3, 4, 5],
+  onboardingDone: false,
+  notificationsEnabled: false,
+  notificationHour: 18,
+  notificationMinute: 0,
 };
 
 export function useStorage() {
@@ -92,9 +98,34 @@ export function useStorage() {
     await saveState({ ...current, speechEnabled: enabled });
   }, [saveState]);
 
+  const setKbWeight = useCallback(async (weight: number) => {
+    const current = stateRef.current;
+    await saveState({ ...current, kbWeight: weight });
+  }, [saveState]);
+
+  const setTrainingDays = useCallback(async (days: number[]) => {
+    const current = stateRef.current;
+    await saveState({ ...current, trainingDays: days });
+  }, [saveState]);
+
+  const completeOnboarding = useCallback(async (kbWeight: number, trainingDays: number[]) => {
+    const current = stateRef.current;
+    await saveState({ ...current, kbWeight, trainingDays, onboardingDone: true, startDate: getTodayISO() });
+  }, [saveState]);
+
+  const setNotificationSettings = useCallback(async (enabled: boolean, hour: number, minute: number) => {
+    const current = stateRef.current;
+    await saveState({ ...current, notificationsEnabled: enabled, notificationHour: hour, notificationMinute: minute });
+  }, [saveState]);
+
+  const clearCompletedWorkouts = useCallback(async () => {
+    const current = stateRef.current;
+    await saveState({ ...current, completedWorkouts: [] });
+  }, [saveState]);
+
   const resetAll = useCallback(async () => {
     await saveState({ ...DEFAULT_STATE, startDate: getTodayISO() });
   }, [saveState]);
 
-  return { state, isLoaded, completeWorkout, toggleChecklistItem, setStartDate, setCurrentWeek, setSpeechEnabled, resetAll };
+  return { state, isLoaded, completeWorkout, toggleChecklistItem, setStartDate, setCurrentWeek, setSpeechEnabled, setKbWeight, setTrainingDays, completeOnboarding, setNotificationSettings, clearCompletedWorkouts, resetAll };
 }

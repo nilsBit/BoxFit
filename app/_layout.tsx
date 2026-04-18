@@ -54,6 +54,14 @@ export default function RootLayout() {
       >
         <Stack.Screen name="(tabs)" />
         <Stack.Screen
+          name="onboarding"
+          options={{
+            presentation: 'fullScreenModal',
+            animation: 'fade',
+            gestureEnabled: false,
+          }}
+        />
+        <Stack.Screen
           name="workout"
           options={{
             presentation: 'fullScreenModal',
@@ -72,6 +80,13 @@ export default function RootLayout() {
           options={{
             presentation: 'fullScreenModal',
             animation: 'slide_from_bottom',
+          }}
+        />
+        <Stack.Screen
+          name="history"
+          options={{
+            presentation: 'modal',
+            animation: 'slide_from_right',
           }}
         />
       </Stack>
