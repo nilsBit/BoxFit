@@ -7,26 +7,23 @@
     "development": {
       "developmentClient": true,
       "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      },
       "ios": {
         "simulator": true
       }
     },
     "preview": {
       "distribution": "internal",
-      "ios": {
-        "simulator": false
+      "android": {
+        "buildType": "apk"
       }
     },
     "production": {
-      "autoIncrement": true
-    }
-  },
-  "submit": {
-    "production": {
-      "ios": {
-        "appleId": "",
-        "ascAppId": "",
-        "appleTeamId": ""
+      "autoIncrement": true,
+      "android": {
+        "buildType": "app-bundle"
       }
     }
   }
