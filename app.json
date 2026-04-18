@@ -17,7 +17,9 @@
       "supportsTablet": false,
       "bundleIdentifier": "com.boxfit.app",
       "infoPlist": {
-        "UIBackgroundModes": ["audio"]
+        "UIBackgroundModes": [
+          "audio"
+        ]
       }
     },
     "android": {
@@ -27,7 +29,9 @@
       },
       "package": "com.boxfit.app",
       "edgeToEdgeEnabled": true,
-      "permissions": ["VIBRATE"]
+      "permissions": [
+        "VIBRATE"
+      ]
     },
     "plugins": [
       "expo-router",
@@ -40,12 +44,14 @@
           "image": "./assets/splash-icon.png",
           "imageWidth": 200
         }
-      ]
+      ],
+      "@react-native-community/datetimepicker"
     ],
     "extra": {
       "eas": {
-        "projectId": ""
-      }
+        "projectId": "744f10fc-a7ed-4992-9c20-e18e0757ecb7"
+      },
+      "router": {}
     }
   }
 }
